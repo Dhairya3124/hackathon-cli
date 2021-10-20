@@ -1,6 +1,10 @@
 # hackathon-cli
 Hackathon-cli is a CLI tool which provides all the details of hackathons available for
-the respective month.
+the respective month. So you can just see all the details of hackathons available without leaving 
+your command line.
+
+![](https://github.com/Dhairya3124/hackathon-cli/blob/main/assets/demo.gif)
+
 
 
 ## Technologies Used:
