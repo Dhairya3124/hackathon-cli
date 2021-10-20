@@ -7,11 +7,9 @@ import (
 	"log"
     "strconv"
 	"time"
-
 	"github.com/common-nighthawk/go-figure"
     "github.com/briandowns/spinner"
 	"github.com/gocolly/colly"
-	//    "strings"
 )
 type Event struct {
     Name string `json:"name"`
@@ -44,22 +42,12 @@ func ListofEvents() {
     // On every a element which has href attribute call callback
     c.OnHTML(".event-wrapper", func(e *colly.HTMLElement) {
         title:= e.ChildText("h3")
-
-        //fmt.Println(title)
-        // Timeline:= e.ChildText("p")
-        // fmt.Println(Timeline)
         link:= e.ChildAttr("a[href]","href")
-        //fmt.Println(link)
         location:= e.ChildText("div.event-location > span:nth-child(1)")
-        //fmt.Println(location)
         location2:= e.ChildText("div.event-location > span:nth-child(2)")
-        //fmt.Println(location2)
         mode_of_participation:= e.ChildText("div.event-hybrid-notes > span")
-        //fmt.Println(mode_of_participation)
-        start_date:= e.ChildAttr("div.inner>meta:nth-child(5)", "content")
-        //fmt.Println(start_date)
+        start_date:= e.ChildAttr("div.inner>meta:nth-child(5)", "content")    
         end_date:= e.ChildAttr("div.inner>meta:nth-child(6)", "content")
-        //fmt.Println(end_date)
 
         Events:= Event{
             Name: title,
@@ -72,26 +60,8 @@ func ListofEvents() {
         allEvents = append(allEvents, Events)
         writeJSON(allEvents)
         showJSON()
-        // _,yo,_:= "2020-07-03"
-        // fmt.Println(yo.Month())
-
-	// 	mystring:=e.ChildText("a")
-    //     split:=strings.Split(mystring," ")
-    //   //  split2:=strings.Split(split[1]," ")
-    //     //fmt.Println(split[0])
-    //     //fmt.Println(split)
-    //     for i:=0;i<len(split);i++{ 
-    //         fmt.Println(strings.TrimSpace(split[i]))
-    //     }
-
 	})
 
-    // Before making a request print "Visiting ..."
-    c.OnRequest(func(r *colly.Request) {
-        //fmt.Println("Visiting", r.URL.String())
-    })
-
-    // Start scraping on https://hackerspaces.org
     c.Visit("https://mlh.io/seasons/2022/events")
 }
 func writeJSON(data []Event){
@@ -139,9 +109,6 @@ func showJSON(){
     }
         
          
-        // fmt.Println(data[i].StartDate)
-        // fmt.Println(data[i].Name)
-        // fmt.Println(data[i].Link)
-    }
- //   fmt.Println(currentMonth)
+   }
+ 
 }
